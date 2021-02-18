@@ -30,12 +30,14 @@ namespace ChatServiceLibrary
             cmd.Connection = conn;
             Console.WriteLine("DB Connection Success !");
         }
-        public User Login(User user)
+        public User Login(String username, String password)
         {
             dbInit();
-            cmd.CommandText = "SELECT * FROM [Users] WHERE Email=@Email and Password=@Password";
-            SqlParameter param1 = new SqlParameter("@Email", user.Email);
-            SqlParameter param2 = new SqlParameter("@Password", user.Password);
+            Console.WriteLine(username);
+            Console.WriteLine(password);
+            cmd.CommandText = "SELECT * FROM [Users] WHERE Username=@Username and Password=@Password";
+            SqlParameter param1 = new SqlParameter("@Username", username);
+            SqlParameter param2 = new SqlParameter("@Password", password);
             cmd.Parameters.Add(param1);
             cmd.Parameters.Add(param2);
             conn.Open();
@@ -43,10 +45,13 @@ namespace ChatServiceLibrary
             User fetchedUser = new User();
             while (sqlDataReader.Read())
             {
-                fetchedUser.ID = sqlDataReader.GetInt32(0);
-                fetchedUser.Email = sqlDataReader.GetString(1);
-                fetchedUser.Name = sqlDataReader.GetString(2);
-                fetchedUser.PhoneNumber = sqlDataReader.GetString(4);
+                fetchedUser.UserId = sqlDataReader.GetInt32(0);
+                fetchedUser.Name = sqlDataReader.GetString(1);
+                fetchedUser.Email = sqlDataReader.GetString(2);
+                fetchedUser.Password = sqlDataReader.GetString(3);
+                fetchedUser.Username = sqlDataReader.GetString(4);
+
+                Console.WriteLine(sqlDataReader.GetString(2));
             }
             sqlDataReader.Close();
             conn.Close();
@@ -65,7 +70,7 @@ namespace ChatServiceLibrary
             cmd.Parameters.AddWithValue("@email", user.Email);
             cmd.Parameters.AddWithValue("@Name", user.Name);
             cmd.Parameters.AddWithValue("@Password", user.Password);
-            cmd.Parameters.AddWithValue("@PhoneNumber", user.Username);
+            cmd.Parameters.AddWithValue("@Username", user.Username);
 
             conn.Open();
             try

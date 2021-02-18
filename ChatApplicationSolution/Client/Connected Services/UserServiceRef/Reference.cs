@@ -23,28 +23,22 @@ namespace Client.UserServiceRef {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AgeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime CreatedAtField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FirstNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LastNameField;
+        private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime UpdatedAtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -56,19 +50,6 @@ namespace Client.UserServiceRef {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Age {
-            get {
-                return this.AgeField;
-            }
-            set {
-                if ((this.AgeField.Equals(value) != true)) {
-                    this.AgeField = value;
-                    this.RaisePropertyChanged("Age");
-                }
             }
         }
         
@@ -99,40 +80,14 @@ namespace Client.UserServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FirstName {
+        public string Name {
             get {
-                return this.FirstNameField;
+                return this.NameField;
             }
             set {
-                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
-                    this.FirstNameField = value;
-                    this.RaisePropertyChanged("FirstName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastName {
-            get {
-                return this.LastNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
-                    this.LastNameField = value;
-                    this.RaisePropertyChanged("LastName");
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -159,6 +114,19 @@ namespace Client.UserServiceRef {
                 if ((this.UpdatedAtField.Equals(value) != true)) {
                     this.UpdatedAtField = value;
                     this.RaisePropertyChanged("UpdatedAt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
                 }
             }
         }
@@ -197,10 +165,10 @@ namespace Client.UserServiceRef {
         System.Threading.Tasks.Task<Client.UserServiceRef.User> RegisterAsync(Client.UserServiceRef.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Login", ReplyAction="http://tempuri.org/IUserService/LoginResponse")]
-        Client.UserServiceRef.User Login(Client.UserServiceRef.User user);
+        Client.UserServiceRef.User Login(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Login", ReplyAction="http://tempuri.org/IUserService/LoginResponse")]
-        System.Threading.Tasks.Task<Client.UserServiceRef.User> LoginAsync(Client.UserServiceRef.User user);
+        System.Threading.Tasks.Task<Client.UserServiceRef.User> LoginAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DoWork", ReplyAction="http://tempuri.org/IUserService/DoWorkResponse")]
         string DoWork();
@@ -244,12 +212,12 @@ namespace Client.UserServiceRef {
             return base.Channel.RegisterAsync(user);
         }
         
-        public Client.UserServiceRef.User Login(Client.UserServiceRef.User user) {
-            return base.Channel.Login(user);
+        public Client.UserServiceRef.User Login(string username, string password) {
+            return base.Channel.Login(username, password);
         }
         
-        public System.Threading.Tasks.Task<Client.UserServiceRef.User> LoginAsync(Client.UserServiceRef.User user) {
-            return base.Channel.LoginAsync(user);
+        public System.Threading.Tasks.Task<Client.UserServiceRef.User> LoginAsync(string username, string password) {
+            return base.Channel.LoginAsync(username, password);
         }
         
         public string DoWork() {

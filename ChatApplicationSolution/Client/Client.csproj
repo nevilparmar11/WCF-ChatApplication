@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,6 +55,16 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ChatServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\UserServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Client.resx">
@@ -69,6 +80,35 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Connected Services\ChatServiceRef\ChatService.wsdl" />
+    <None Include="Connected Services\ChatServiceRef\Client.ChatServiceRef.ChatMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatServiceRef\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatServiceRef\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatServiceRef\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatServiceRef\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserServiceRef\Client.UserServiceRef.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserServiceRef\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserServiceRef\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserServiceRef\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserServiceRef\UserService.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,13 +125,28 @@
   <ItemGroup>
     <EmbeddedResource Include="images\logoff.jpg" />
     <EmbeddedResource Include="images\logon.jpg" />
+    <None Include="Connected Services\UserServiceRef\item.disco" />
+    <None Include="Connected Services\UserServiceRef\configuration91.svcinfo" />
+    <None Include="Connected Services\UserServiceRef\configuration.svcinfo" />
+    <None Include="Connected Services\UserServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ChatServiceRef\item.disco" />
+    <None Include="Connected Services\ChatServiceRef\configuration91.svcinfo" />
+    <None Include="Connected Services\ChatServiceRef\configuration.svcinfo" />
+    <None Include="Connected Services\ChatServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="images\sendmessage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChatServiceLibrary\ChatServiceLibrary.csproj">
-      <Project>{afbceeb3-42b1-40da-a93b-3358fe01b698}</Project>
-      <Name>ChatServiceLibrary</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ChatServiceRef\" />
+    <WCFMetadataStorage Include="Connected Services\UserServiceRef\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

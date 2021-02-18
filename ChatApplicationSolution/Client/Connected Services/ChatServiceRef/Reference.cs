@@ -71,10 +71,16 @@ namespace Client.ChatServiceRef {
         private string MessageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MessageIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime TimeStampField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -95,6 +101,19 @@ namespace Client.ChatServiceRef {
                 if ((object.ReferenceEquals(this.MessageField, value) != true)) {
                     this.MessageField = value;
                     this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MessageId {
+            get {
+                return this.MessageIdField;
+            }
+            set {
+                if ((this.MessageIdField.Equals(value) != true)) {
+                    this.MessageIdField = value;
+                    this.RaisePropertyChanged("MessageId");
                 }
             }
         }
@@ -121,6 +140,19 @@ namespace Client.ChatServiceRef {
                 if ((this.TimeStampField.Equals(value) != true)) {
                     this.TimeStampField = value;
                     this.RaisePropertyChanged("TimeStamp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
                 }
             }
         }

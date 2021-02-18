@@ -15,7 +15,7 @@ namespace ChatServiceLibrary
         User Register(User user);
 
         [OperationContract]
-        User Login(User user);
+        User Login(String username, String password);
 
         [OperationContract]
         String DoWork();

@@ -17,6 +17,14 @@ namespace ChatServiceLibrary.Models
     {
         #region Properties
 
+        [DataMember]
+        public int MessageId { get; set; }
+
+       
+        [DataMember]
+        public int UserId { get; set; }
+
+
         /// <summary>
         /// Name of the ChatMessage Originator
         /// </summary>

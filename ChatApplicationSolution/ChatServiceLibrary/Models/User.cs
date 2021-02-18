@@ -11,7 +11,7 @@ namespace ChatServiceLibrary.Models
     public class User
     {
         [DataMember]
-        public int ID { get; set; }
+        public int UserId { get; set; }
 
         [DataMember]
         public string Name { get; set; }
