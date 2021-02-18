@@ -50,7 +50,11 @@ namespace WindowsClient
                 LoggedInUser.Username = user.Username;
 
                 Console.WriteLine(LoggedInUser.Username);
-                MessageBox.Show("Success");
+                MessageBox.Show("Successfully LoggedIn !");
+
+                ChatChoiceForm choiceForm = new ChatChoiceForm();
+                this.Hide();
+                choiceForm.Show();
             }
 
             else

@@ -47,6 +47,7 @@ namespace WindowsClient
             this.btnSendMessage.Size = new System.Drawing.Size(71, 63);
             this.btnSendMessage.TabIndex = 15;
             this.btnSendMessage.UseVisualStyleBackColor = true;
+            this.btnSendMessage.Click += new System.EventHandler(this.btnSendMessage_Click);
             // 
             // txtMyMessage
             // 
@@ -79,6 +80,8 @@ namespace WindowsClient
             this.lstChatMessages.Name = "lstChatMessages";
             this.lstChatMessages.Size = new System.Drawing.Size(657, 228);
             this.lstChatMessages.TabIndex = 12;
+            this.lstChatMessages.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstChatMessages_DrawItem);
+            this.lstChatMessages.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.lstChatMessages_MeasureItem);
             // 
             // lblTitle
             // 

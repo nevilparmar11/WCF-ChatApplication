@@ -54,6 +54,12 @@
     <Compile Include="BroadcastChatForm.Designer.cs">
       <DependentUpon>BroadcastChatForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChatChoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatChoiceForm.Designer.cs">
+      <DependentUpon>ChatChoiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\UserServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,6 +87,9 @@
     <Compile Include="LoggedInUser.cs" />
     <EmbeddedResource Include="BroadcastChatForm.resx">
       <DependentUpon>BroadcastChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatChoiceForm.resx">
+      <DependentUpon>ChatChoiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
