@@ -25,13 +25,18 @@ namespace ChatServiceHost
                 Console.WriteLine("Starting Chat Service...");
                 // Note: Do not put this service host constructor within a using clause.
                 // Errors in Open will be trumped by errors from Close (implicitly called from ServiceHost.Dispose).
-                ServiceHost host = new ServiceHost(typeof(ChatService));
-                host.Open();
+                ServiceHost chatHost = new ServiceHost(typeof(ChatService));
+                chatHost.Open();
+
+                ServiceHost userHost = new ServiceHost(typeof(UserService));
+                userHost.Open();
 
                 Console.WriteLine("The Chat Service has started.");
+                Console.WriteLine("The User Service has started.");
                 Console.WriteLine("Press <ENTER> to quit.");
                 Console.ReadLine();
-                host.Close();
+                chatHost.Close();
+                userHost.Close();
             }
             catch (Exception ex)
             {
