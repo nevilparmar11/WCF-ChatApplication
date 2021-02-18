@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Web.Configuration;
 using ChatServiceLibrary.Models;
 
 namespace ChatServiceLibrary
@@ -17,14 +19,66 @@ namespace ChatServiceLibrary
             return "Inside dowork of User service";
         }
 
+        SqlConnection conn;
+        SqlCommand cmd;
+
+        void dbInit()
+        {
+            var connectionString = WebConfigurationManager.ConnectionStrings["chatappdbconnectionstring"].ConnectionString;
+            conn = new SqlConnection(connectionString);
+            cmd = new SqlCommand();
+            cmd.Connection = conn;
+            Console.WriteLine("DB Connection Success !");
+        }
         public User Login(User user)
         {
-            return new User();
+            dbInit();
+            cmd.CommandText = "SELECT * FROM [Users] WHERE Email=@Email and Password=@Password";
+            SqlParameter param1 = new SqlParameter("@Email", user.Email);
+            SqlParameter param2 = new SqlParameter("@Password", user.Password);
+            cmd.Parameters.Add(param1);
+            cmd.Parameters.Add(param2);
+            conn.Open();
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            User fetchedUser = new User();
+            while (sqlDataReader.Read())
+            {
+                fetchedUser.ID = sqlDataReader.GetInt32(0);
+                fetchedUser.Email = sqlDataReader.GetString(1);
+                fetchedUser.Name = sqlDataReader.GetString(2);
+                fetchedUser.PhoneNumber = sqlDataReader.GetString(4);
+            }
+            sqlDataReader.Close();
+            conn.Close();
+            return fetchedUser;
+        }
+
+        public void Logout(User user)
+        {
+            throw new NotImplementedException();
         }
 
         public User Register(User user)
         {
-            return new User();
+            dbInit();
+            cmd.CommandText = "Insert into [Users] values(@Email,@Name,@Password,@Username)";
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@Name", user.Name);
+            cmd.Parameters.AddWithValue("@Password", user.Password);
+            cmd.Parameters.AddWithValue("@PhoneNumber", user.Username);
+
+            conn.Open();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                conn.Close();
+                return new User();
+            }
+            conn.Close();
+            return user;
         }
     }
 }

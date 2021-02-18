@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ChatService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IChatService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3030/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3030/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ChatServiceLibrary" />
+      <xsd:import schemaLocation="http://localhost:3030/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3030/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ChatServiceLibrary.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IChatService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_Login_DuplicateUserFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ChatServiceLibrary" name="detail" element="q1:DuplicateUserFault" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_Logoff_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logoff" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_Logoff_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoffResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_LogInState_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogInState" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_LogInState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogInStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetMessageHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessageHistory" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetMessageHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessageHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWork" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SendClientMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendClientMessage" />
+  </wsdl:message>
+  <wsdl:portType name="IChatService">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Login" message="tns:IChatService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/LoginResponse" message="tns:IChatService_Login_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IChatService/LoginDuplicateUserFaultFault" name="DuplicateUserFaultFault" message="tns:IChatService_Login_DuplicateUserFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logoff">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Logoff" message="tns:IChatService_Logoff_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/LogoffResponse" message="tns:IChatService_Logoff_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogInState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/LogInState" message="tns:IChatService_LogInState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/LogInStateResponse" message="tns:IChatService_LogInState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/SendMessageResponse" message="tns:IChatService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetMessageHistory" message="tns:IChatService_GetMessageHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetMessageHistoryResponse" message="tns:IChatService_GetMessageHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/DoWork" message="tns:IChatService_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/DoWorkResponse" message="tns:IChatService_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendClientMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/SendClientMessage" message="tns:IChatService_SendClientMessage_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IChatService" type="tns:IChatService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IChatService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DuplicateUserFaultFault">
+        <soap12:fault use="literal" name="DuplicateUserFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Logoff">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/Logoff" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogInState">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/LogInState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageHistory">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GetMessageHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoWork">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/DoWork" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendClientMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/SendClientMessage" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ChatService">
+    <wsdl:port name="NetTcpBinding_IChatService" binding="tns:NetTcpBinding_IChatService">
+      <soap12:address location="net.tcp://localhost:1100/ChatService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1100/ChatService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
