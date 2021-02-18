@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ServiceModel;
-using ChatServiceLibrary;
 using System.Diagnostics;
+//using Client.ChatServiceRef;
+//using Client.UserServiceRef;
+using ChatServiceLibrary;
 using ChatServiceLibrary.Models;
 
 namespace Client
@@ -366,12 +368,18 @@ namespace Client
                 {
                     try
                     {
-                        proxy.Login(userName);
+                        bool success = proxy.Login(userName, "nevil");
 
-                        // Change the Login State
+                    // Change the Login State
+                    if (success)
+                    {
                         LoggedIn = true;
+                        return true;
+                    }
+                    else
+                        LoggedIn = false;
 
-                    return true;
+                    return false;
                     } // end of try
 
                     catch (FaultException<DuplicateUserFault> ex)
@@ -544,5 +552,6 @@ namespace Client
         {
 
         }
+
     } // end of class
 } // end of namespace

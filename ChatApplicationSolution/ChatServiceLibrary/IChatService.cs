@@ -26,7 +26,7 @@ namespace ChatServiceLibrary
         /// <param name="userName">the user name to login (string)</param>
         [OperationContract]
         [FaultContract(typeof(DuplicateUserFault))]
-        void Login(string userName);
+        bool Login(string userName, string password);
 
         /// <summary>
         /// Logoff
@@ -35,7 +35,7 @@ namespace ChatServiceLibrary
         /// </summary>
         /// <param name="userName">the user name to log off (string)</param>
         [OperationContract]
-        void Logoff(string userName);
+        bool Logoff(string userName);
 
         /// <summary>
         /// LogInState
@@ -61,10 +61,6 @@ namespace ChatServiceLibrary
         /// <param name="messages">a list (string) of formatted messages</param>
         [OperationContract]
         List<ChatMessage> GetMessageHistory();
-
-
-        [OperationContract]
-        String DoWork();
 
     } // end of interface
 

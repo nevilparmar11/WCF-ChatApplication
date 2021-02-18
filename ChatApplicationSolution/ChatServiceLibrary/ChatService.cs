@@ -21,11 +21,7 @@ namespace ChatServiceLibrary
     {
         SqlConnection conn;
         SqlCommand cmd;
-
-        public string DoWork()
-        {
-            return "inside do work method of chat service.";
-        }
+        UserService userService;
 
         void DbInit()
         {
@@ -42,12 +38,13 @@ namespace ChatServiceLibrary
         {
             // Initialize the connection on instance creation
             DbInit();
+            userService = new UserService();
         }
 
         #region Fields
 
         // Set to a small number for testing purposes
-        private const int maximumMessages = 40;
+        private const int maximumMessages = 50;
 
         // The Message History is a Queue
         private Queue<ChatMessage> chatMessages = new Queue<ChatMessage>();
@@ -77,7 +74,7 @@ namespace ChatServiceLibrary
         /// Sends a messgae that the user has logged on...
         /// </summary>
         /// <param name="userName">user name from the client (string)</param>
-        public void Login(string userName)
+        public bool Login(string userName, string password)
         {
             // Trim the Username to 15 Characters
             if (userName.Length > 15)
@@ -100,6 +97,8 @@ namespace ChatServiceLibrary
 
                 // Write to Console
                 Console.WriteLine($"User {userName} logged in...");
+
+                return true;
 
             } // end of if
 
@@ -143,7 +142,7 @@ namespace ChatServiceLibrary
         /// Send a message that the user has logged off..
         /// </summary>
         /// <param name="userName">user name from the client (string)</param>
-        public void Logoff(string userName)
+        public bool Logoff(string userName)
         {
             // Trim the Username to 15 Characters
             if (userName.Length > 15)
@@ -163,6 +162,8 @@ namespace ChatServiceLibrary
 
                     // Send Message to Console
                     Console.WriteLine($"User {userName} logged off...");
+
+                    return true; // successfully logged out
                 }
             }
             catch (Exception ex)
@@ -170,6 +171,7 @@ namespace ChatServiceLibrary
                 System.Diagnostics.Debug.WriteLine(ex.Message, System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace + "." + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
 
+            return false;
         } // end of method
 
         /// <summary>
@@ -189,22 +191,23 @@ namespace ChatServiceLibrary
 
             try
             {
+                User user = new User();
                 // Verify the User is Logged On First
-                if (userName != "Admin" && !loggedInUsers.ContainsKey(userName))
-                {
-                    // Try to Login User First
-                    Login(userName);
-                }
+                //if (userName != "Admin" && !loggedInUsers.ContainsKey(userName))
+                //{
+                //    user = userService.GetUserByUserName(userName);
+                //}
+
+                user = userService.GetUserByUserName(userName);
 
                 // Create New Message Object
-                ChatMessage chatmessage = new ChatMessage(userName, DateTime.Now, message);
+                ChatMessage chatmessage = new ChatMessage(userName, DateTime.Now, message, user.UserId);
 
                 // Add to Message History
                 AddMessage(chatmessage);
 
                 // Transmitt to Connected Users
                 SendMessageToUsers(chatmessage);
-
             }
             catch (Exception ex)
             {
@@ -235,6 +238,30 @@ namespace ChatServiceLibrary
             {
                 chatMessages?.Enqueue(message);
             }
+
+            // update message history in database table
+            DbInit();
+            cmd.CommandText = "Insert into [ChatMessages] values(@UserId,@Name, @Message, @TimeStamp)";
+            cmd.Parameters.AddWithValue("@UserId", message.UserId);
+            cmd.Parameters.AddWithValue("@Name", message.Name);
+            cmd.Parameters.AddWithValue("@Message", message.Message);
+            cmd.Parameters.AddWithValue("@TimeStamp", message.TimeStamp);
+            conn.Open();
+            ChatMessage newMessage;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Data.SqlClient.SqlException e) // If phonenumber is already exists then
+            {
+                conn.Close();
+            }
+
+            newMessage = message;
+            conn.Close();
+
+            return;
+
         } // end of method
 
         /// <summary>

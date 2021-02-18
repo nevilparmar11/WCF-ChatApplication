@@ -1,4 +1,6 @@
-﻿namespace Client
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace Client
 {
     partial class frmMain
     {
@@ -7,6 +9,7 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>

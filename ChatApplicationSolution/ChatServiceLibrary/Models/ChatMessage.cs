@@ -60,12 +60,12 @@ namespace ChatServiceLibrary.Models
         /// <param name="name">Name of the message sender (string)</param>
         /// <param name="time">TimeStamp (DateTime universal) of the sender</param>
         /// <param name="message">Message of the sender (string)</param>
-        public ChatMessage(string name, DateTime time, string message)
+        public ChatMessage(string name, DateTime time, string message, int userId)
         {
             Name = name;
             TimeStamp = time;
             Message = message;
-
+            UserId = userId;
         } // end of constructor
 
         #endregion constructors

@@ -66,7 +66,7 @@ namespace ChatServiceLibrary
         public User Register(User user)
         {
             dbInit();
-            cmd.CommandText = "Insert into [Users] values(@Email,@Name,@Password,@Username)";
+            cmd.CommandText = "Insert into [Users] values(@Name,@Email,@Password,@Username)";
             cmd.Parameters.AddWithValue("@email", user.Email);
             cmd.Parameters.AddWithValue("@Name", user.Name);
             cmd.Parameters.AddWithValue("@Password", user.Password);
@@ -84,6 +84,29 @@ namespace ChatServiceLibrary
             }
             conn.Close();
             return user;
+        }
+
+        public User GetUserByUserName(string username)
+        {
+            dbInit();
+            Console.WriteLine(username);
+            cmd.CommandText = "SELECT * FROM [Users] WHERE Username=@Username";
+            SqlParameter param1 = new SqlParameter("@Username", username);
+            cmd.Parameters.Add(param1);
+            conn.Open();
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            User fetchedUser = new User();
+            while (sqlDataReader.Read())
+            {
+                fetchedUser.UserId = sqlDataReader.GetInt32(0);
+                fetchedUser.Name = sqlDataReader.GetString(1);
+                fetchedUser.Email = sqlDataReader.GetString(2);
+                fetchedUser.Password = sqlDataReader.GetString(3);
+                fetchedUser.Username = sqlDataReader.GetString(4);
+            }
+            sqlDataReader.Close();
+            conn.Close();
+            return fetchedUser;
         }
     }
 }

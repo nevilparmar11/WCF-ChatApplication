@@ -19,6 +19,8 @@ namespace ChatServiceLibrary
 
         [OperationContract]
         String DoWork();
-        
+
+        [OperationContract]
+        User GetUserByUserName(String username);
     }
 }
