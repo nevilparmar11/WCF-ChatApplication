@@ -48,6 +48,23 @@ namespace ChatServiceLibrary
 
         public List<ChatMessage> GetMessageHistory()
         {
+            DbInit();
+            cmd.CommandText = "SELECT * FROM [ChatMessages] ORDER BY TimeStamp";
+            conn.Open();
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            
+            while (sqlDataReader.Read())
+            { 
+                chatMessages.Enqueue(new ChatMessage(sqlDataReader.GetInt32(0), 
+                                                    sqlDataReader.GetInt32(1), 
+                                                    sqlDataReader.GetString(2), 
+                                                    sqlDataReader.GetString(3), 
+                                                    sqlDataReader.GetDateTime(4)));
+            }
+
+            sqlDataReader.Close();
+            conn.Close();
+
             return chatMessages.ToList();
         }
 

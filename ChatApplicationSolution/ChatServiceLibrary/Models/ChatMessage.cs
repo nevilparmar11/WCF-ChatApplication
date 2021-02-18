@@ -68,6 +68,24 @@ namespace ChatServiceLibrary.Models
             UserId = userId;
         } // end of constructor
 
+        /// <summary>
+        /// ChatMessage
+        /// Parameterized Constructor
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <param name="userId"></param>
+        /// <param name="name"></param>
+        /// <param name="time"></param>
+        /// <param name="message"></param>
+        public ChatMessage(int messageId, int userId,string name, string message, DateTime time)
+        {
+            MessageId = messageId;
+            Name = name;
+            TimeStamp = time;
+            Message = message;
+            UserId = userId;
+        } // end of constructor
+
         #endregion constructors
 
         /// <summary>
