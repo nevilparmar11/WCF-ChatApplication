@@ -62,5 +62,21 @@ namespace WindowsClient
                 MessageBox.Show("User Already Exists!");
             }
         }
+
+        private void pswhideview_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pswhideview.Checked)
+            {
+                tbPassword.UseSystemPasswordChar = true;
+                var checkbox = (CheckBox)sender;
+                checkbox.Text = "View";
+            }
+            else
+            {
+                tbPassword.UseSystemPasswordChar = false;
+                var checkbox = (CheckBox)sender;
+                checkbox.Text = "Hide";
+            }
+        }
     }
 }

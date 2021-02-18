@@ -40,6 +40,7 @@ namespace WindowsClient
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.pswhideview = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -120,6 +121,7 @@ namespace WindowsClient
             // 
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tbPassword.Location = new System.Drawing.Point(251, 240);
+            this.tbPassword.MaxLength = 15;
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(215, 30);
             this.tbPassword.TabIndex = 9;
@@ -146,11 +148,24 @@ namespace WindowsClient
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // pswhideview
+            // 
+            this.pswhideview.AutoSize = true;
+            this.pswhideview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.pswhideview.Location = new System.Drawing.Point(484, 244);
+            this.pswhideview.Name = "pswhideview";
+            this.pswhideview.Size = new System.Drawing.Size(60, 22);
+            this.pswhideview.TabIndex = 12;
+            this.pswhideview.Text = "Hide";
+            this.pswhideview.UseVisualStyleBackColor = true;
+            this.pswhideview.CheckedChanged += new System.EventHandler(this.pswhideview_CheckedChanged);
+            // 
             // SignupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 484);
+            this.Controls.Add(this.pswhideview);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.tbPassword);
@@ -183,5 +198,6 @@ namespace WindowsClient
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.CheckBox pswhideview;
     }
 }

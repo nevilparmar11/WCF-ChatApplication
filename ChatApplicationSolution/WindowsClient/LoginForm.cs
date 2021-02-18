@@ -62,5 +62,21 @@ namespace WindowsClient
                 MessageBox.Show("Please enter Correct Username and Password");
             }
         }
+
+        private void pswhideview_CheckedChanged(object sender, EventArgs e)
+        {
+            if(pswhideview.Checked)
+            {
+                tbPassword.UseSystemPasswordChar = true;
+                var checkbox = (CheckBox)sender;
+                checkbox.Text = "View";
+            }
+            else
+            {
+                tbPassword.UseSystemPasswordChar = false;
+                var checkbox = (CheckBox)sender;
+                checkbox.Text = "Hide";
+            }
+        }
     }
 }
