@@ -14,6 +14,11 @@ namespace ChatServiceLibrary
     public class UserService : IUserService
     {
        
+        public UserService()
+        {
+            dbInit();
+        }
+
         public string DoWork()
         {
             return "Inside dowork of User service";

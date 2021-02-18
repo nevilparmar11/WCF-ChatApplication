@@ -10,6 +10,18 @@ namespace ChatServiceLibrary.Models
     [DataContract]
     public class User
     {
+        public User ()
+        {
+
+        }
+        public User (string name , string email, string password , string username)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+            Username = username;
+        }
+
         [DataMember]
         public int UserId { get; set; }
 
