@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ServiceModel;
 using System.Diagnostics;
-//using Client.ChatServiceRef;
-//using Client.UserServiceRef;
 using ChatServiceLibrary;
 using ChatServiceLibrary.Models;
 
