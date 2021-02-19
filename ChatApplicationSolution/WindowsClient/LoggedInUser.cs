@@ -15,5 +15,7 @@ namespace WindowsClient
         public static string Email { get; set; }
 
         public static string Username { get; set; }
+
+        public static string receiverName { get; set; } = "user";
     }
 }

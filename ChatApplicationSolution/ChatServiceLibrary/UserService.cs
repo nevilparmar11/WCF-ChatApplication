@@ -72,7 +72,7 @@ namespace ChatServiceLibrary
         {
             dbInit();
             cmd.CommandText = "Insert into [Users] values(@Name,@Email,@Password,@Username)";
-            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@Email", user.Email);
             cmd.Parameters.AddWithValue("@Name", user.Name);
             cmd.Parameters.AddWithValue("@Password", user.Password);
             cmd.Parameters.AddWithValue("@Username", user.Username);

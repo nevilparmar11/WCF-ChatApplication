@@ -31,12 +31,18 @@ namespace ChatServiceHost
                 ServiceHost userHost = new ServiceHost(typeof(UserService));
                 userHost.Open();
 
+                ServiceHost onetooneChatServiceHost = new ServiceHost(typeof(OneToOneChatService));
+                onetooneChatServiceHost.Open();
+
                 Console.WriteLine("The Chat Service has started.");
                 Console.WriteLine("The User Service has started.");
+                Console.WriteLine("The One to One Chat Service has started.");
                 Console.WriteLine("Press <ENTER> to quit.");
+
                 Console.ReadLine();
                 chatHost.Close();
                 userHost.Close();
+                onetooneChatServiceHost.Close();
             }
             catch (Exception ex)
             {

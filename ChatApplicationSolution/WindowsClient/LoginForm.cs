@@ -48,6 +48,7 @@ namespace WindowsClient
                 LoggedInUser.Name = user.Name;
                 LoggedInUser.Email = user.Email;
                 LoggedInUser.Username = user.Username;
+                LoggedInUser.receiverName = "user";
 
                 Console.WriteLine(LoggedInUser.Username);
                 MessageBox.Show("Successfully LoggedIn !");

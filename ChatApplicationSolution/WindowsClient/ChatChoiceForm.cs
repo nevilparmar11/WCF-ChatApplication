@@ -19,7 +19,9 @@ namespace WindowsClient
 
         private void btnOneChat_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            OneToOneChatForm otoForm = new OneToOneChatForm();
+            otoForm.Show();
         }
 
         private void btnBroadcast_Click(object sender, EventArgs e)
