@@ -152,23 +152,26 @@ namespace WindowsClient
                     {
                         if(LoggedInUser.receiverName == null)
                         {
-                            lstChatMessages.DataSource = null;
                             lstChatMessages.Items.Clear();
                             lstChatMessages.Items.Add("NO MESSAGE RECORDS");
                         }
                     }
                     else
                     {
+                        lstChatMessages.Items.Clear();
+
                         // retrieve the chat history
                         historyChat = proxy.GetMessageHistory(LoggedInUser.Username, LoggedInUser.receiverName);
-                        lstChatMessages.DataSource = historyChat;
                         
                         if (historyChat == null)
                         {
-                            lstChatMessages.DataSource = null;
-                            lstChatMessages.Items.Clear();
                             lstChatMessages.Items.Add("NO MESSAGE RECORDS");
                             return;
+                        }
+
+                        foreach(SingleChatMessage msg in historyChat)
+                        {
+                            lstChatMessages.Items.Add(msg);
                         }
 
                         Console.WriteLine("Sender : " + LoggedInUser.Username + " Receiver : " + LoggedInUser.receiverName);

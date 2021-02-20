@@ -122,6 +122,7 @@ namespace ChatServiceLibrary
             cmd.Parameters.AddWithValue("@ReceiveName", receivename);
             conn.Open();
             SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            chatMessages.Clear();
 
             while (sqlDataReader.Read())
             {
