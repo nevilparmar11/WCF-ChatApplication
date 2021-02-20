@@ -162,8 +162,9 @@ namespace WindowsClient
 
                         // retrieve the chat history
                         historyChat = proxy.GetMessageHistory(LoggedInUser.Username, LoggedInUser.receiverName);
+
                         
-                        if (historyChat == null)
+                        if (historyChat.Count == 0)
                         {
                             lstChatMessages.Items.Add("NO MESSAGE RECORDS");
                             return;
@@ -172,6 +173,7 @@ namespace WindowsClient
                         foreach(SingleChatMessage msg in historyChat)
                         {
                             lstChatMessages.Items.Add(msg);
+                            Console.WriteLine("MSG : " + msg);
                         }
 
                         Console.WriteLine("Sender : " + LoggedInUser.Username + " Receiver : " + LoggedInUser.receiverName);
