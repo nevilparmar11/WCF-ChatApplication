@@ -16,6 +16,8 @@ namespace WindowsClient
 
         public static string Username { get; set; }
 
-        public static string receiverName { get; set; } = "user";
+        public static string receiverName { get; set; }
+
+        public static string previousReceiver { get; set; }
     }
 }

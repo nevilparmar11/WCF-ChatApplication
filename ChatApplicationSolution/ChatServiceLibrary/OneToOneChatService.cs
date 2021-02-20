@@ -57,9 +57,10 @@ namespace ChatServiceLibrary
             {
                 loggedInUsers.Add(userName, callback);
 
-                SendMessageToParticularUser("Admin", userName ,$"User {userName} logged in...");
-
                 Console.WriteLine($"User {userName} logged in...");
+
+                // Notify all the online users about newly joined user
+                NotifyAllOnlineUsersAboutNewlyJoinedUser(userName);
 
                 return true;
 
@@ -111,6 +112,7 @@ namespace ChatServiceLibrary
         {
             DbInit();
             Console.WriteLine("Inside Get message history of db");
+            Console.WriteLine(sendername + " " + receivename);
             Console.WriteLine("Sender Name : " + sendername);
             Console.WriteLine("Receiver Name : " + receivename);
 
@@ -198,6 +200,18 @@ namespace ChatServiceLibrary
             }
         }
 
+        public List<string> GetAllOnlineUsers(string request_sender)
+        {
+            List<string> callbackKeys = loggedInUsers?.Keys.ToList();
+            List<string> connectedUsers = new List<string>();
+
+            foreach (string key in callbackKeys)
+                if(key != request_sender)
+                    connectedUsers.Add(key);
+
+            return connectedUsers;
+        }
+
         #endregion IOneToOneChatService Implementation
 
         #region Methods
@@ -278,6 +292,35 @@ namespace ChatServiceLibrary
                 } 
             } // end of foreach
         }
+
+        private void NotifyAllOnlineUsersAboutNewlyJoinedUser(string connecting_user)
+        {
+            // Inform all of the clients of the new message
+            List<string> callbackKeys = loggedInUsers?.Keys.ToList();
+
+            // Loops through each logged in user
+            foreach (string key in callbackKeys)
+            {
+                if (key != connecting_user)
+                {
+                    try
+                    {
+                        IOneToOneChatCallback callback = loggedInUsers[key];
+                        callback.SendNewConnectedUserNameToAllOnlineUsers(connecting_user);
+                        Console.WriteLine($"Notifying user {key} about joining of {connecting_user}");
+                    }
+                    // catches an issue with a user disconnect and loggs off that user
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message, System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace + "." + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
+                        // Remove the disconnected client
+                        LeaveServer(key);
+                    }
+
+                }
+            } // end of foreach
+        }
+
 
         #endregion Methods
     }

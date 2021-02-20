@@ -22,5 +22,12 @@ namespace ChatServiceLibrary
         /// <param name="message">a ChatMessage object</param>
         [OperationContract(IsOneWay = true)]
         void SendMessageToParticularClient(SingleChatMessage message);
+
+        /// <summary>
+        /// Callback function to send the username of newly connecting username to all the online users
+        /// </summary>
+        /// <param name="connecting_user"></param>
+        [OperationContract(IsOneWay = true)]
+        void SendNewConnectedUserNameToAllOnlineUsers(string connecting_user);
     }
 }

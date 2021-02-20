@@ -30,5 +30,8 @@ namespace ChatServiceLibrary
 
         [OperationContract]
         List<SingleChatMessage> GetMessageHistory(string sendername, string receivename);
+
+        [OperationContract]
+        List<string> GetAllOnlineUsers(string request_sender);
     }
 }

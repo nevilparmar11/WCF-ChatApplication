@@ -123,7 +123,7 @@ namespace WindowsClient
         /// Gets a list of ChatMessages to update
         /// the UI list box
         /// </summary>
-        private void UpdateMessageHistoryUI()
+        private void UpdateMessageHistoryUI(bool multipleTimes)
         {
             // If User is Not Logged In
             if (LoggedInUser.Username == null)
@@ -132,11 +132,9 @@ namespace WindowsClient
                 return;
             }
 
-            // Clear the List Box
-            lstChatMessages.Items.Clear();
-
             // Temporary variable to hold the list of chat messages
             List<SingleChatMessage> historyChat;
+
 
             // Retrieve the New Messages
             DuplexChannelFactory<IOneToOneChatService> cf = new DuplexChannelFactory<IOneToOneChatService>(this, "NetTcpBinding_IOneToOneChatService");
@@ -148,16 +146,87 @@ namespace WindowsClient
             {
                 try
                 {
-                    // retrieve the chat history
-                    historyChat = proxy.GetMessageHistory(LoggedInUser.Username, LoggedInUser.receiverName);
+                    IsChatHistoryLoaded = true;
+
+                    if(LoggedInUser.receiverName == LoggedInUser.previousReceiver || multipleTimes) 
+                    {
+                        if(LoggedInUser.receiverName == null)
+                        {
+                            lstChatMessages.DataSource = null;
+                            lstChatMessages.Items.Clear();
+                            lstChatMessages.Items.Add("NO MESSAGE RECORDS");
+                        }
+                    }
+                    else
+                    {
+                        // retrieve the chat history
+                        historyChat = proxy.GetMessageHistory(LoggedInUser.Username, LoggedInUser.receiverName);
+                        lstChatMessages.DataSource = historyChat;
+                        
+                        if (historyChat == null)
+                        {
+                            lstChatMessages.DataSource = null;
+                            lstChatMessages.Items.Clear();
+                            lstChatMessages.Items.Add("NO MESSAGE RECORDS");
+                            return;
+                        }
+
+                        Console.WriteLine("Sender : " + LoggedInUser.Username + " Receiver : " + LoggedInUser.receiverName);
+                    }
+                  
+
+                } // end of try
+
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message, System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace + "." + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
+                    MessageBox.Show(ex.Message);
+                }
+
+            } // end of if
+
+            else
+            {
+                // Cannot Connect to Server 
+                MessageBox.Show("Cannot Create a Channel to a Proxy. Check Your Configuration Settings.", "Proxy", MessageBoxButtons.OK);
+            } // end of else
+
+        } // end of method
+
+
+        private void UpdateOnlineUsersListboxUI()
+        {
+            // If User is Not Logged In
+            if (LoggedInUser.Username == null)
+            {
+                MessageBox.Show("Please Login First !");
+                return;
+            }
+
+            // Clear the List Box
+            lbOnlineUsers.Items.Clear();
+
+            // Temporary variable to hold the list of chat messages
+            List<string> receivedOnlineUsers;
+
+            // Retrieve the New Messages
+            DuplexChannelFactory<IOneToOneChatService> cf = new DuplexChannelFactory<IOneToOneChatService>(this, "NetTcpBinding_IOneToOneChatService");
+
+            cf.Open();
+            IOneToOneChatService proxy = cf.CreateChannel();
+
+            if (proxy != null)
+            {
+                try
+                {
+                    // retrieve the online username from the server
+                    receivedOnlineUsers = proxy.GetAllOnlineUsers(LoggedInUser.Username);
 
                     // Update the UI
-                    foreach (SingleChatMessage item in historyChat)
+                    foreach (string item in receivedOnlineUsers)
                     {
-                        lstChatMessages.Items.Add(item);
+                        lbOnlineUsers.Items.Add(item);
                     }
-
-                    IsChatHistoryLoaded = true;
 
                 } // end of try
 
@@ -191,7 +260,8 @@ namespace WindowsClient
                 // Update the GUI to Enable Chat
                 btnSendMessage.Enabled = true;
                 txtMyMessage.Enabled = true;
-                UpdateMessageHistoryUI();
+                UpdateMessageHistoryUI(false);
+                UpdateOnlineUsersListboxUI();
                 Console.WriteLine("Inside update chat gui ");
             }
             else
@@ -233,6 +303,32 @@ namespace WindowsClient
                 }
             }
             catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message, System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace + "." + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
+                MessageBox.Show("Error receiving message: " + ex.Message);
+            }
+        }
+
+        public void SendNewConnectedUserNameToAllOnlineUsers(string connecting_user)
+        {
+            // add newly connected username name to the list of online users in the Listbox
+            try
+            {
+                // UI Threading Sync
+                if (lstChatMessages.InvokeRequired)
+                {
+                    // UI Thread Sync is Required, Invoke the Request on the
+                    // UI thread
+                    Action<string> del = new Action<string>(SendNewConnectedUserNameToAllOnlineUsers);
+                    lstChatMessages.BeginInvoke(del, connecting_user);
+                }
+                // Add the recent online users names to the listbox
+                else
+                {
+                    lbOnlineUsers.Items.Add((string)connecting_user);
+                }
+            }
+            catch(Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message, System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace + "." + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
                 MessageBox.Show("Error receiving message: " + ex.Message);
@@ -332,6 +428,35 @@ namespace WindowsClient
         private void OneToOneChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void lbOnlineUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Inside selected index changed method of lbOnlineUsers");
+            // Get the value of the current selected index , i.e username of the current chat window
+            string currUser = lbOnlineUsers.SelectedItem.ToString();
+            Console.WriteLine("Selected User : " + currUser);
+
+            // Get the currUser Index
+            int currentUserIndex = lbOnlineUsers.SelectedIndex;
+
+            if (currentUserIndex == -1)
+            {
+                MessageBox.Show("Invalid User index selection");
+            }
+
+            else
+            {
+                LoggedInUser.previousReceiver = LoggedInUser.receiverName;
+                LoggedInUser.receiverName = currUser;
+                label1.Text = "Messages With " + currUser;
+                IsChatHistoryLoaded = false;
+                if (LoggedInUser.previousReceiver == currUser)
+                    UpdateMessageHistoryUI(true);
+                else
+                    UpdateMessageHistoryUI(false);
+            }
+
         }
     }
 }
