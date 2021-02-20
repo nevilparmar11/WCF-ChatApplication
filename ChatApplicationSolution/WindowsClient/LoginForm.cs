@@ -51,7 +51,7 @@ namespace WindowsClient
                 LoggedInUser.receiverName = "user";
 
                 Console.WriteLine(LoggedInUser.Username);
-                MessageBox.Show("Successfully LoggedIn !");
+                MessageBox.Show("Successfully LoggedIn !", "Congrats", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ChatChoiceForm choiceForm = new ChatChoiceForm();
                 this.Hide();
@@ -60,7 +60,7 @@ namespace WindowsClient
 
             else
             {
-                MessageBox.Show("Please enter Correct Username and Password");
+                MessageBox.Show("Please enter Correct Username and Password", "Exit", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
