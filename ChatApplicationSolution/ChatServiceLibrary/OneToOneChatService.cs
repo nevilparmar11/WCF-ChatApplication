@@ -110,6 +110,14 @@ namespace ChatServiceLibrary
         /// <returns></returns>
         public List<SingleChatMessage> GetMessageHistory(string sendername, string receivename)
         {
+            chatMessages.Clear();
+            GetMessageHistoryHelper(sendername, receivename);
+            GetMessageHistoryHelper(receivename, sendername);
+            return chatMessages.ToList();
+        }
+
+        private void GetMessageHistoryHelper (string sendername, string receivename)
+        {
             DbInit();
             Console.WriteLine("Inside Get message history of db");
             Console.WriteLine(sendername + " " + receivename);
@@ -122,7 +130,6 @@ namespace ChatServiceLibrary
             cmd.Parameters.AddWithValue("@ReceiveName", receivename);
             conn.Open();
             SqlDataReader sqlDataReader = cmd.ExecuteReader();
-            chatMessages.Clear();
 
             while (sqlDataReader.Read())
             {
@@ -142,9 +149,8 @@ namespace ChatServiceLibrary
             conn.Close();
 
             Console.WriteLine("Outside get message history of db");
-
-            return chatMessages.ToList();
         }
+
 
         public bool LogInState(string userName)
         {
