@@ -1,1 +1,2 @@
-http://bit.ly/soc_project_demo
+Presentation Video : http://bit.ly/soc_project_demo
+Presentation Doc used in this video : https://bit.ly/soc_project_demo_doc 
