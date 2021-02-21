@@ -44,7 +44,7 @@ The project solution contains 3 projects. <br>
 - User CRUD [Update Profile, Delete My Account ...]
 - Chat Messages CRUD
 
-## Technologies to be used
+## Technologies used
 1. WCF(Windows Communication Foundation) Service in C#
 2. C# Console App
 3. Windows Forms
