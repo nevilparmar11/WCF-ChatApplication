@@ -21,11 +21,11 @@ The project solution contains 3 projects. <br>
 **1. ChatServiceLibrary** 
   - WCF Service Library 
   - The library contains 3 major services
-    **1. User Service**
+    1. User Service
     - Deals with user CRUD service operations
-    **2. Broadcast Service**
+    2. Broadcast Service
     - Deals with Broadcast message service operations
-    **3. One-One Chat Service**
+    3. One-One Chat Service
     - Deals with a one-one chat message service operations
 
 **2. ChatServiceHost** 
