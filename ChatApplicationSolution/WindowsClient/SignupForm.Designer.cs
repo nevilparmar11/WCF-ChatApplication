@@ -92,7 +92,6 @@ namespace WindowsClient
             this.lblPassword.Size = new System.Drawing.Size(108, 26);
             this.lblPassword.TabIndex = 5;
             this.lblPassword.Text = "Password";
-            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // tbName
             // 
@@ -126,6 +125,7 @@ namespace WindowsClient
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(215, 30);
             this.tbPassword.TabIndex = 9;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // btnSubmit
             // 
@@ -152,6 +152,8 @@ namespace WindowsClient
             // pswhideview
             // 
             this.pswhideview.AutoSize = true;
+            this.pswhideview.Checked = true;
+            this.pswhideview.CheckState = System.Windows.Forms.CheckState.Checked;
             this.pswhideview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pswhideview.Location = new System.Drawing.Point(484, 244);
             this.pswhideview.Name = "pswhideview";
@@ -160,7 +162,6 @@ namespace WindowsClient
             this.pswhideview.Text = "Hide";
             this.pswhideview.UseVisualStyleBackColor = true;
             this.pswhideview.CheckedChanged += new System.EventHandler(this.pswhideview_CheckedChanged);
-            this.pswhideview.Checked = true;
             // 
             // SignupForm
             // 

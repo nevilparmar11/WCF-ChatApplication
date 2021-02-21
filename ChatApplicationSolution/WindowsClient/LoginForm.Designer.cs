@@ -112,6 +112,8 @@ namespace WindowsClient
             // pswhideview
             // 
             this.pswhideview.AutoSize = true;
+            this.pswhideview.Checked = true;
+            this.pswhideview.CheckState = System.Windows.Forms.CheckState.Checked;
             this.pswhideview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pswhideview.Location = new System.Drawing.Point(499, 187);
             this.pswhideview.Name = "pswhideview";
@@ -120,7 +122,6 @@ namespace WindowsClient
             this.pswhideview.Text = "Hide";
             this.pswhideview.UseVisualStyleBackColor = true;
             this.pswhideview.CheckedChanged += new System.EventHandler(this.pswhideview_CheckedChanged);
-            this.pswhideview.Checked = true;
             // 
             // LoginForm
             // 
