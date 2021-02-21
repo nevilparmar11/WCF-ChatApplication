@@ -96,7 +96,7 @@ namespace WindowsClient
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(528, 19);
+            this.btnBack.Location = new System.Drawing.Point(579, 19);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(193, 41);
             this.btnBack.TabIndex = 16;
@@ -108,7 +108,9 @@ namespace WindowsClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(846, 458);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnSendMessage);
             this.Controls.Add(this.txtMyMessage);

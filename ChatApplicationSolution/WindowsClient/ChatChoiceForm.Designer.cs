@@ -29,6 +29,7 @@ namespace WindowsClient
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatChoiceForm));
             this.btnOneChat = new System.Windows.Forms.Button();
             this.btnBroadcast = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,7 +66,7 @@ namespace WindowsClient
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(146, 36);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Welcome " + LoggedInUser.Username;
+            this.label1.Text = "Welcome ";
             // 
             // btnProfile
             // 
@@ -82,6 +83,8 @@ namespace WindowsClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.label1);

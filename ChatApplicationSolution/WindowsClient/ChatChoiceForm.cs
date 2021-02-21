@@ -15,6 +15,7 @@ namespace WindowsClient
         public ChatChoiceForm()
         {
             InitializeComponent();
+            this.label1.Text = "Welcome " + LoggedInUser.Username;
         }
 
         private void btnOneChat_Click(object sender, EventArgs e)

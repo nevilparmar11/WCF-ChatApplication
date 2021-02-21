@@ -155,6 +155,7 @@
     <EmbeddedResource Include="images\logon.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\bg.jpg" />
     <None Include="Connected Services\UserServiceRef\item.disco" />
     <None Include="Connected Services\UserServiceRef\configuration91.svcinfo" />
     <None Include="Connected Services\UserServiceRef\configuration.svcinfo" />
