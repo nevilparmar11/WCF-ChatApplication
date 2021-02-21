@@ -22,6 +22,16 @@ namespace ChatServiceLibrary.Models
             Username = username;
         }
 
+
+        public User(int userid, string name, string email, string password, string username)
+        {
+            UserId = userid;
+            Name = name;
+            Email = email;
+            Password = password;
+            Username = username;
+        }
+
         [DataMember]
         public int UserId { get; set; }
 

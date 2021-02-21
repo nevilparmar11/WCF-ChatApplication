@@ -35,5 +35,12 @@ namespace WindowsClient
         {
             Application.Exit();
         }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Show profile button clicked");
+            ShowProfileForm profileForm = new ShowProfileForm();
+            profileForm.Show();
+        }
     }
 }

@@ -84,6 +84,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ShowProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowProfileForm.Designer.cs">
+      <DependentUpon>ShowProfileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +114,13 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShowProfileForm.resx">
+      <DependentUpon>ShowProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SignupForm.resx">
       <DependentUpon>SignupForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Connected Services\UserServiceRef\item.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -131,9 +141,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatServiceLibrary\ChatServiceLibrary.csproj">

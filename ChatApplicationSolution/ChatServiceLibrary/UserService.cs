@@ -113,5 +113,48 @@ namespace ChatServiceLibrary
             conn.Close();
             return fetchedUser;
         }
+
+
+        public User UpdateUserByUsername(User olduser)
+        {
+            dbInit();
+            cmd.CommandText = "UPDATE [Users] SET Name=@Name, Email=@Email, Password=@Password, Username=@Username WHERE UserId=@UserId";
+            cmd.Parameters.AddWithValue("@Email", olduser.Email);
+            cmd.Parameters.AddWithValue("@Name", olduser.Name);
+            cmd.Parameters.AddWithValue("@Password", olduser.Password);
+            cmd.Parameters.AddWithValue("@Username", olduser.Username);
+            cmd.Parameters.AddWithValue("@UserId", olduser.UserId);
+
+            conn.Open();
+            User newUser;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                newUser = olduser;
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                conn.Close();
+                return new User();
+            }
+            conn.Close();
+            return olduser;
+        }
+
+        public bool DeletUserByUsername(User olduser)
+        {
+            dbInit();
+            cmd.CommandText = "DELETE FROM [Users] WHERE UserId=@UserId";
+            cmd.Parameters.AddWithValue("@UserId", olduser.UserId);
+            conn.Open();
+
+            int rowEffected = cmd.ExecuteNonQuery();
+            conn.Close();
+            
+            if (rowEffected == 0)     // userId is not valid, ( User not exists of provided id)
+                return false; 
+
+            return true; // return success
+        }
     }
 }

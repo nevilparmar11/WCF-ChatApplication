@@ -48,6 +48,7 @@ namespace WindowsClient
                 LoggedInUser.Name = user.Name;
                 LoggedInUser.Email = user.Email;
                 LoggedInUser.Username = user.Username;
+                LoggedInUser.Password = user.Password;
 
                 Console.WriteLine(LoggedInUser.Username);
                 MessageBox.Show("Successfully LoggedIn !", "Congrats", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -65,17 +66,17 @@ namespace WindowsClient
 
         private void pswhideview_CheckedChanged(object sender, EventArgs e)
         {
-            if(pswhideview.Checked)
+            if (pswhideview.Checked)
             {
                 tbPassword.UseSystemPasswordChar = true;
                 var checkbox = (CheckBox)sender;
-                checkbox.Text = "View";
+                checkbox.Text = "Click To View";
             }
             else
             {
                 tbPassword.UseSystemPasswordChar = false;
                 var checkbox = (CheckBox)sender;
-                checkbox.Text = "Hide";
+                checkbox.Text = "Click To Hide";
             }
         }
     }

@@ -92,6 +92,7 @@ namespace WindowsClient
             this.lblPassword.Size = new System.Drawing.Size(108, 26);
             this.lblPassword.TabIndex = 5;
             this.lblPassword.Text = "Password";
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // tbName
             // 
@@ -159,6 +160,7 @@ namespace WindowsClient
             this.pswhideview.Text = "Hide";
             this.pswhideview.UseVisualStyleBackColor = true;
             this.pswhideview.CheckedChanged += new System.EventHandler(this.pswhideview_CheckedChanged);
+            this.pswhideview.Checked = true;
             // 
             // SignupForm
             // 

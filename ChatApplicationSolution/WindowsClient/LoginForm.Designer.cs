@@ -85,6 +85,7 @@ namespace WindowsClient
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(225, 30);
             this.tbPassword.TabIndex = 4;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
@@ -119,6 +120,7 @@ namespace WindowsClient
             this.pswhideview.Text = "Hide";
             this.pswhideview.UseVisualStyleBackColor = true;
             this.pswhideview.CheckedChanged += new System.EventHandler(this.pswhideview_CheckedChanged);
+            this.pswhideview.Checked = true;
             // 
             // LoginForm
             // 

@@ -38,6 +38,18 @@ namespace WindowsClient.UserServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByUserName", ReplyAction="http://tempuri.org/IUserService/GetUserByUserNameResponse")]
         System.Threading.Tasks.Task<ChatServiceLibrary.Models.User> GetUserByUserNameAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUserByUsername", ReplyAction="http://tempuri.org/IUserService/UpdateUserByUsernameResponse")]
+        ChatServiceLibrary.Models.User UpdateUserByUsername(ChatServiceLibrary.Models.User olduser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUserByUsername", ReplyAction="http://tempuri.org/IUserService/UpdateUserByUsernameResponse")]
+        System.Threading.Tasks.Task<ChatServiceLibrary.Models.User> UpdateUserByUsernameAsync(ChatServiceLibrary.Models.User olduser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeletUserByUsername", ReplyAction="http://tempuri.org/IUserService/DeletUserByUsernameResponse")]
+        bool DeletUserByUsername(ChatServiceLibrary.Models.User olduser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeletUserByUsername", ReplyAction="http://tempuri.org/IUserService/DeletUserByUsernameResponse")]
+        System.Threading.Tasks.Task<bool> DeletUserByUsernameAsync(ChatServiceLibrary.Models.User olduser);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +109,22 @@ namespace WindowsClient.UserServiceRef {
         
         public System.Threading.Tasks.Task<ChatServiceLibrary.Models.User> GetUserByUserNameAsync(string username) {
             return base.Channel.GetUserByUserNameAsync(username);
+        }
+        
+        public ChatServiceLibrary.Models.User UpdateUserByUsername(ChatServiceLibrary.Models.User olduser) {
+            return base.Channel.UpdateUserByUsername(olduser);
+        }
+        
+        public System.Threading.Tasks.Task<ChatServiceLibrary.Models.User> UpdateUserByUsernameAsync(ChatServiceLibrary.Models.User olduser) {
+            return base.Channel.UpdateUserByUsernameAsync(olduser);
+        }
+        
+        public bool DeletUserByUsername(ChatServiceLibrary.Models.User olduser) {
+            return base.Channel.DeletUserByUsername(olduser);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeletUserByUsernameAsync(ChatServiceLibrary.Models.User olduser) {
+            return base.Channel.DeletUserByUsernameAsync(olduser);
         }
     }
 }

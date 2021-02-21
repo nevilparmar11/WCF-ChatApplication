@@ -32,6 +32,7 @@ namespace WindowsClient
             this.btnOneChat = new System.Windows.Forms.Button();
             this.btnBroadcast = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnProfile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOneChat
@@ -64,13 +65,25 @@ namespace WindowsClient
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(146, 36);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Welcome " + LoggedInUser.Username;
+            this.label1.Text = "Welcome ";
+            // 
+            // btnProfile
+            // 
+            this.btnProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfile.Location = new System.Drawing.Point(323, 392);
+            this.btnProfile.Name = "btnProfile";
+            this.btnProfile.Size = new System.Drawing.Size(118, 46);
+            this.btnProfile.TabIndex = 3;
+            this.btnProfile.Text = "Profile";
+            this.btnProfile.UseVisualStyleBackColor = true;
+            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // ChatChoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBroadcast);
             this.Controls.Add(this.btnOneChat);
@@ -86,5 +99,6 @@ namespace WindowsClient
         private System.Windows.Forms.Button btnOneChat;
         private System.Windows.Forms.Button btnBroadcast;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnProfile;
     }
 }

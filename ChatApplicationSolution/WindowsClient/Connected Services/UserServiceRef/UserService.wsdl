@@ -31,6 +31,18 @@
   <wsdl:message name="IUserService_GetUserByUserName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByUserNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUserByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUserByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeletUserByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeletUserByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletUserByUsernameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/Register" message="tns:IUserService_Register_InputMessage" />
@@ -47,6 +59,14 @@
     <wsdl:operation name="GetUserByUserName">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserByUserName" message="tns:IUserService_GetUserByUserName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUserByUserNameResponse" message="tns:IUserService_GetUserByUserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUserByUsername" message="tns:IUserService_UpdateUserByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserByUsernameResponse" message="tns:IUserService_UpdateUserByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletUserByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeletUserByUsername" message="tns:IUserService_DeletUserByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeletUserByUsernameResponse" message="tns:IUserService_DeletUserByUsername_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -80,6 +100,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserByUserName">
       <soap:operation soapAction="http://tempuri.org/IUserService/GetUserByUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserByUsername">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUserByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletUserByUsername">
+      <soap:operation soapAction="http://tempuri.org/IUserService/DeletUserByUsername" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

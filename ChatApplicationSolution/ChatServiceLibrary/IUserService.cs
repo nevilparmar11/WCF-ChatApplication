@@ -22,5 +22,11 @@ namespace ChatServiceLibrary
 
         [OperationContract]
         User GetUserByUserName(String username);
+
+        [OperationContract]
+        User UpdateUserByUsername(User olduser);
+
+        [OperationContract]
+        bool DeletUserByUsername(User olduser);
     }
 }

@@ -69,13 +69,13 @@ namespace WindowsClient
             {
                 tbPassword.UseSystemPasswordChar = true;
                 var checkbox = (CheckBox)sender;
-                checkbox.Text = "View";
+                checkbox.Text = "Click To View";
             }
             else
             {
                 tbPassword.UseSystemPasswordChar = false;
                 var checkbox = (CheckBox)sender;
-                checkbox.Text = "Hide";
+                checkbox.Text = "Click To Hide";
             }
         }
     }
