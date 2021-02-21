@@ -24,16 +24,20 @@ namespace WindowsClient
         // Has the Chat History Been Loaded?
         private bool IsChatHistoryLoaded = false;
 
+        private ChatChoiceForm chref;
+
         #endregion fields
 
 
         #region Constructor
 
-        public BroadcastChatForm()
+        public BroadcastChatForm(ChatChoiceForm chref)
         {
             InitializeComponent();
 
             JoinServer(LoggedInUser.Username);
+
+            this.chref = chref;
         }
 
         #endregion Constructor
@@ -341,5 +345,10 @@ namespace WindowsClient
             Application.Exit();
         }
 
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            chref.Show();
+        }
     } // end of class
 }

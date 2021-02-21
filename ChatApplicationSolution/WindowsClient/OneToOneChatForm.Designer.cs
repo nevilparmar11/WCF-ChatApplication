@@ -39,6 +39,7 @@ namespace WindowsClient
             this.label2 = new System.Windows.Forms.Label();
             this.lbOnlineUsers = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSendMessage
@@ -128,11 +129,22 @@ namespace WindowsClient
             this.lbOnlineUsers.TabIndex = 24;
             this.lbOnlineUsers.SelectedIndexChanged += new System.EventHandler(this.lbOnlineUsers_SelectedIndexChanged);
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(445, 18);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(193, 41);
+            this.btnBack.TabIndex = 25;
+            this.btnBack.Text = "Go back to Dashboard";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // OneToOneChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 446);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lbOnlineUsers);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -159,5 +171,6 @@ namespace WindowsClient
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox lbOnlineUsers;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnBack;
     }
 }

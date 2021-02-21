@@ -23,13 +23,16 @@ namespace WindowsClient
 
         #endregion fields
 
+        private ChatChoiceForm chref;
         #region Constructor
 
-        public OneToOneChatForm()
+        public OneToOneChatForm(ChatChoiceForm chref)
         {
             InitializeComponent();
 
             JoinServer(LoggedInUser.Username);
+
+            this.chref = chref;
         }
 
         #endregion Constructor
@@ -462,6 +465,12 @@ namespace WindowsClient
                     UpdateMessageHistoryUI(false);
             }
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            chref.Show();
         }
     }
 }

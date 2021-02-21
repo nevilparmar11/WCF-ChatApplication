@@ -35,6 +35,7 @@ namespace WindowsClient
             this.lblMyMessage = new System.Windows.Forms.Label();
             this.lstChatMessages = new System.Windows.Forms.ListBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSendMessage
@@ -93,11 +94,22 @@ namespace WindowsClient
             this.lblTitle.TabIndex = 8;
             this.lblTitle.Text = "Broadcast Message Window";
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(528, 19);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(193, 41);
+            this.btnBack.TabIndex = 16;
+            this.btnBack.Text = "Go back to Dashboard";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // BroadcastChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnSendMessage);
             this.Controls.Add(this.txtMyMessage);
             this.Controls.Add(this.lblMyMessage);
@@ -117,5 +129,6 @@ namespace WindowsClient
         private System.Windows.Forms.Label lblMyMessage;
         private System.Windows.Forms.ListBox lstChatMessages;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnBack;
     }
 }

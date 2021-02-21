@@ -20,14 +20,14 @@ namespace WindowsClient
         private void btnOneChat_Click(object sender, EventArgs e)
         {
             this.Hide();
-            OneToOneChatForm otoForm = new OneToOneChatForm();
+            OneToOneChatForm otoForm = new OneToOneChatForm(this);
             otoForm.Show();
         }
 
         private void btnBroadcast_Click(object sender, EventArgs e)
         {
             this.Hide();
-            BroadcastChatForm brFrom = new BroadcastChatForm();
+            BroadcastChatForm brFrom = new BroadcastChatForm(this);
             brFrom.Show();
         }
 

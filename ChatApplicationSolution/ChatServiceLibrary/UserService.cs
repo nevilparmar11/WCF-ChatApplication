@@ -111,6 +111,7 @@ namespace ChatServiceLibrary
             try
             {
                 cmd.ExecuteNonQuery();
+                sendEmail(user.Email, user.Username); // send greetings
             }
             catch (System.Data.SqlClient.SqlException e)
             {
