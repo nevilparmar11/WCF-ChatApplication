@@ -53,7 +53,8 @@ The project solution contains 3 projects. <br>
 <img src="https://user-images.githubusercontent.com/48133426/108638536-d5373600-74b5-11eb-96e6-5a6ed4ad6f55.jpg" width="45%"></img> <img src="https://user-images.githubusercontent.com/48133426/108638542-d7999000-74b5-11eb-82d8-1340aa6cd97d.jpg" width="45%"></img> <img src="https://user-images.githubusercontent.com/48133426/108638553-dcf6da80-74b5-11eb-8ec1-7626d4866e18.jpg" width="45%"></img> <img src="https://user-images.githubusercontent.com/48133426/108638559-dff1cb00-74b5-11eb-997c-b4aae27dacb2.jpg" width="45%"></img> <img src="https://user-images.githubusercontent.com/48133426/108638563-e4b67f00-74b5-11eb-9442-c937cad2a4db.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/48133426/108638566-e718d900-74b5-11eb-9498-8e9d1c7e1a91.png" width="45%"></img> 
 
 ## Live Demo
-[Visit Demo](https://project-management-system.netlify.app/)
+[Visit Demo](http://bit.ly/soc_project_demo)
+[Presentation_Doc](http://bit.ly/soc_project_demo_doc)
 
 ---------
 
