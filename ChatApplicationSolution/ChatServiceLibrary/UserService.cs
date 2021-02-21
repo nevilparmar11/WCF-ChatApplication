@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
@@ -35,6 +36,35 @@ namespace ChatServiceLibrary
             cmd.Connection = conn;
             Console.WriteLine("DB Connection Success !");
         }
+
+        private void sendEmail (string to_send_email, string to_send_username)
+        {
+            Console.WriteLine("Inside send email method");
+            string fromEmail = System.Environment.GetEnvironmentVariable("wcfchatappemail");
+            string fromEmailPassword = System.Environment.GetEnvironmentVariable("wcfchatapppassword");
+
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress(fromEmail);
+                mail.To.Add(to_send_email);
+                mail.Subject = "Hey " + to_send_username + " - WCFChatApp";
+                mail.Body = "Hi " + to_send_username + ",\n" + "Welcome to WCFChatApp." + "\n" + "Thanks for registering with us." + "\n \n" + "Yours trully, \n" + "Nevil";
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(fromEmail, fromEmailPassword);
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
         public User Login(String username, String password)
         {
             dbInit();
