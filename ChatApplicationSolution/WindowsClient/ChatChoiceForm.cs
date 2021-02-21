@@ -39,8 +39,8 @@ namespace WindowsClient
         private void btnProfile_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Show profile button clicked");
-            ShowProfileForm profileForm = new ShowProfileForm();
-            profileForm.Show();
+            ShowProfileForm profileForm = new ShowProfileForm(this);
+            profileForm.ShowDialog();
         }
     }
 }

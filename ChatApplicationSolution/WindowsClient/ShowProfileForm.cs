@@ -15,11 +15,13 @@ namespace WindowsClient
     public partial class ShowProfileForm : Form
     {
         UserServiceClient userService;
-        public ShowProfileForm()
+        ChatChoiceForm chref;
+        public ShowProfileForm(ChatChoiceForm chform_ref)
         {
             InitializeComponent();
             userService = new UserServiceClient("BasicHttpBinding_IUserService");
             loadControlValues();
+            chref = chform_ref;
         }
 
         private void loadControlValues()
@@ -69,7 +71,8 @@ namespace WindowsClient
                 Console.WriteLine("User has been deleted !");
                 MessageBox.Show("User has been deleted !", "See you alien", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                this.Hide();
+                this.Close();
+                chref.Close();
                 LoginForm lgForm = new LoginForm();
                 lgForm.Show();
             }
