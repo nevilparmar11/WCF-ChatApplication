@@ -9,7 +9,6 @@ It supports 2 modes: <br>
 - Uses TCP Dual binding protocol. 
 - Implemented using WCF Callback mechanism
 - Implemented using WCF duplex service, where users send their msg to the server , and server, in turn, forwards their messages to all the users in a network using Client Callback
-- 
 **EXTRA:** All of these modes work in real-time updates.
 
 ## Implementation Details:
