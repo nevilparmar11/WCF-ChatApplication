@@ -4,8 +4,7 @@
 Multi-user Chat application.
 
 It supports 2 modes: <br>
-**1. Broadcast Mode**
-**2. One-One Chat Mode**
+**Broadcast Mode  | One-One Chat Mode** <br> 
 - Users in a network can broadcast their msgs among themselves or can chat in one-one mode. 
 - Uses TCP Dual binding protocol. 
 - Implemented using WCF Callback mechanism
