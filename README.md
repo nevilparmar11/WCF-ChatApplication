@@ -5,14 +5,13 @@ Multi-user Chat application.
 
 It supports 2 modes: <br>
 **1. Broadcast Mode**
-- Users in a network can broadcast their msgs among themselves. 
-- Uses TCP Dual binding protocol.
-- Implemented using WCF duplex service, where users send their msg to the server , and server, in turn, forwards their messages to all the users in a network using Client Callback
-
 **2. One-One Chat Mode**
+- Users in a network can broadcast their msgs among themselves or can chat in one-one mode. 
+- Uses TCP Dual binding protocol. 
 - Implemented using WCF Callback mechanism
-
-**NOTE:** All of these modes work in real-time updates.
+- Implemented using WCF duplex service, where users send their msg to the server , and server, in turn, forwards their messages to all the users in a network using Client Callback
+- 
+**EXTRA:** All of these modes work in real-time updates.
 
 ## Implementation Details:
 The project solution contains 3 projects. <br>
