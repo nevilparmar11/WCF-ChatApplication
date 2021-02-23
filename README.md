@@ -53,6 +53,9 @@ The project solution contains 3 projects. <br>
 [Visit Demo](http://bit.ly/soc_project_demo) <br>
 [Presentation_Doc](http://bit.ly/soc_project_demo_doc)
 
+### The MIT License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/nevilparmar11/WCF-ChatApplication/blob/main/LICENSE)  
+
 ---------
 
 ```javascript
